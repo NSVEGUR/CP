@@ -3,7 +3,8 @@
     "*.ejs": "html",
     "ostream": "cpp",
     "iostream": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "algorithm": "cpp"
   },
   "C_Cpp.errorSquiggles": "Enabled"
 }
