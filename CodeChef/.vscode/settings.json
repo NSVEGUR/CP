@@ -4,7 +4,8 @@
     "ostream": "cpp",
     "iostream": "cpp",
     "string": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "vector": "cpp"
   },
   "C_Cpp.errorSquiggles": "Enabled"
 }
