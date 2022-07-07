@@ -4,7 +4,7 @@ class Node:
 		self.left = None
 		self.right = None
 
-class BST:
+class BSTree:
 	def __init__(self):
 		self.root = None
 		return self.root
@@ -82,14 +82,14 @@ class BST:
 		else:
 			return self.rank(root.left, data)
 
-bst = BST()
+myTree = BSTree()
 list1 = []
 for i in range(int(input("Enter the size of nodes: "))):
 	list1.append(int(input(f'Enter the element {i+1} : ')))
 n = len(list1)
 for i in range(n):
-	bst.root = bst.insert(bst.root, list1[i])
-bst.inorder(bst.root)
+	myTree.root = myTree.insert(myTree.root, list1[i])
+myTree.inorder(myTree.root)
 print("\n")
 x = int(input("Enter the node to find the rank: "))
-print(f'Rank of {x} is : ', bst.rank(bst.root, x))
+print(f'Rank of {x} is : ', myTree.rank(myTree.root, x))
