@@ -25,6 +25,12 @@ class AVLTree:
 		if not root:
 			return 0
 		return self.getHeight(root.left) - self.getHeight(root.right)
+
+	def getMinValue(self, root: Node):
+		current = root
+		while not current.left:
+			current = current.left
+		return current
 	
 	def rotateLeft(self, z: Node):
 		y = z.right
@@ -74,6 +80,44 @@ class AVLTree:
 		if(balance < -1 and data < root.right.data):
 			root.right = self.rotateRight(root.right)
 			return self.rotateLeft(root)
+		return root
+
+	def delete(self, root: Node, data):
+		if not root:
+			return root
+		if root.data < data:
+			root.right = self.delete(root.right, data)
+		elif root.data > data:
+			root.left = self.delete(root.left, data)
+		else:
+			if root.left is None:
+				temp = root.right
+				root = None
+				return temp
+			elif root.right is None:
+				temp = root.left
+				root = None
+				return temp
+			temp = self.getMinValue(root.right)
+			root.data = temp.data
+			root.right = self.delete(root.right, temp.data)
+
+		if not root:
+			return root
+		balance = self.getBalance(root)
+		root.height = 1 + max(self.getHeight(root.left), self.getHeight(root.right))
+
+		if(balance > 1 and self.getBalance(root.left) >= 0):
+			return self.rotateRight(root)
+		if(balance > 1 and self.getBalance(root.left) < 0):
+			root.left = self.leftRotate(root.left)
+			return self.rotateRight(root)
+		if(balance < -1 and self.getBalance(root.right) <= 0):
+			return self.rotateLeft(root)
+		if(balance < -1 and self.getBalance(root.right) > 0):
+			root.right = self.rotateRight(root.right)
+			return self.rotateLeft(root)
+
 		return root
 
 	def inorder(self, root: Node):
